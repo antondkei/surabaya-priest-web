@@ -1,6 +1,12 @@
 /* =========================
    BUTTON SYSTEM
 ========================= */
+.btn,
+.btn:link,
+.btn:visited {
+  text-decoration: none !important;
+}
+
 .btn {
   display: inline-block;
   text-decoration: none;
