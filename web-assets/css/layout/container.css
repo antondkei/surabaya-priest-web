@@ -49,14 +49,14 @@ html {
   overflow-y: overlay; 
   /* Untuk Firefox */
   scrollbar-width: thin; 
-  scrollbar-color: rgba(185, 185, 185, 0.6) transparent;
+  scrollbar-color: var(--color-primary);
   background: transparent; /* Pastikan latar belakang transparan agar tidak memotong width layar */  
 
 }
 
 /* Styling khusus Chrome, Edge, Safari */
 ::-webkit-scrollbar {
-  width: 8px; /* Ukuran scrollbar dibuat tipis */
+  width: 6px; /* Ukuran scrollbar dibuat tipis */
   background-color: transparent; /* Latar transparan agar tidak memotong width layar */
 }
 
@@ -65,7 +65,7 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(25, 26, 83, 0.5); /* Warna Navy Yayasan dengan transparansi */
+  background-color: var(--color-primary); /* Warna Navy Yayasan dengan transparansi */
   border-radius: 10px; /* Ujung scrollbar membulat */
 }
 
