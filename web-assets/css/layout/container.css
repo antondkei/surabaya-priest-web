@@ -1,0 +1,81 @@
+#sby-priest{
+    position: relative;
+    width: 100%;
+    max-width: 100vw;
+    font-family: 'Manrope', sans-serif;
+    background: var(--color-bg-light,);
+    color: var(--color-text,);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* =========================
+   HIDE SCROLLBAR & PREVENT OVERSCROLL
+========================= */
+
+/* Chrome, Edge, Safari */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+html, body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE & Edge lama */
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* <--- Tambahan Wajib */
+}
+
+body {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  background: var(--color-bg-light);
+  color: var(--color-text-primary);
+}
+
+/* =========================
+   FLOATRING SCROLLBAR (OVERLAY)
+========================= */
+
+html {
+  /* Membuat scrollbar melayang (overlay) di browser berbasis Chromium */
+  overflow-y: overlay; 
+  /* Untuk Firefox */
+  scrollbar-width: thin; 
+  scrollbar-color: rgba(25, 26, 83, 0.6) transparent; 
+}
+
+/* Styling khusus Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 8px; /* Ukuran scrollbar dibuat tipis */
+  background-color: transparent; /* Latar transparan agar tidak memotong width layar */
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(25, 26, 83, 0.5); /* Warna Navy Yayasan dengan transparansi */
+  border-radius: 10px; /* Ujung scrollbar membulat */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(224, 196, 159, 0.9); /* Berubah menjadi warna Gold Yayasan saat di-hover */
+}
+
+/* =========================
+   CONTAINER
+========================= */
+#sby-priest .container {
+  max-width: 1600px; /* Diperbesar dari 1200px agar konten lebih merapat ke tepi */
+  margin: 0 auto;
+  padding: 0 6%; /* Menggunakan persentase agar dinamis di berbagai layar */
+  width: 100%;
+}

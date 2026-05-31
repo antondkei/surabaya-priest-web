@@ -1,0 +1,1330 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video,adnav,adheader{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,adnav,adheader{display:block;}body{line-height:1;display:block;}*{margin:0;padding:0;}html{display:block;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{background:transparent;}table{border-collapse:collapse;border-spacing:0;}*,*:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+#wrapper{max-width:970px}#main-wrapper{float:left;width:67%;word-wrap:break-word}#sidebar-wrapper{float:right;width:33%}body#layout ul,body#layout ul li{list-style-type:none;list-style:none}body#layout #header-wrapper{min-height:0;float:left;width:30%}body#layout #header-right{width:60%;float:right}body#layout #banner,body#layout #banner2{background-color:#5f6868;padding:20px 0!important;margin-bottom:20px}body#layout #banner:before,body#layout #banner2:before{content:'Ad Slot 970x90';font-size:13px;color:#fff;margin-bottom:20px;padding-bottom:5px;display:inline-block;font-weight:400;font-family:sans-serif}body#layout #banner .widget,body#layout #banner2 .widget{width:80%;margin:5px auto!important;overflow:hidden;float:none}body#layout #banner .add_widget,body#layout #banner2 .add_widget{width:80%;margin:5px auto!important;overflow:hidden;float:none}h1,h2,h3,h4,h5,h6{color:#222;font-weight:500;line-height:1.2;margin:0 0 10px}h1{font-size:200%}h2{font-size:180%}h3{font-size:160%}h4{font-size:140%}h5{font-size:120%}h6{font-size:100%}.post-body h1{font-size:190%}.post-body h2{font-size:170%}.post-body h3{font-size:150%;line-height:normal}.post-body h4{font-size:130%;line-height:normal}.post-body h5{font-size:110%}.post-body h6{font-size:100%}.post-body h1 b,.post-body h2 b,.post-body h3 b,.post-body h4 b,.post-body h5 b,.post-body h6 b{font-weight:500}
+
+/* =========================================
+   SETUP & VARIABLES (Premium Palette)
+========================================= */
+:root {
+  --color-gold: #d4af37;       /* Emas premium */
+  --color-gold-hover: #b89327; /* Emas gelap saat hover */
+  --color-white: #ffffff;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Reset/Link Optimization */
+.sp-hero a {
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* =========================================
+   HERO SECTION
+========================================= */
+.sp-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-image: url("https://i.ibb.co.com/sphVPB6k/Hero-Pic-sby-priest.avif");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* =========================================
+   OVERLAY (Premium Cinematic Glow)
+========================================= */
+.sp-hero-overlay {
+  position: absolute;
+  inset: 0;
+  /* Kombinasi linear dan radial untuk efek sinematik fokus di tengah */
+  background: 
+    radial-gradient(circle at center, rgba(0,0,0,0) 65%, rgba(0,0,0,0.6) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,18,10,0.75) 80%);
+  z-index: 1;
+}
+
+/* =========================================
+   CONTENT CONTAINER
+========================================= */
+.sp-hero .container {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.sp-hero-content {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding:60px 0;
+  /* Animasi halus saat halaman dimuat */
+  animation: heroFadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* =========================================
+   SUBTITLE (Elegant Tag)
+========================================= */
+.sp-hero-subtitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-secondary);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+/* Garis aksen kiri kanan yang minimalis dan mewah */
+.sp-hero-subtitle::before,
+.sp-hero-subtitle::after {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background-color: var(--color-secondary);
+  opacity: 0.7;
+}
+
+/* =========================================
+   TITLE (Sacred & Bold Serif)
+========================================= */
+.sp-hero-title {
+  font-family: var(--font-heading);
+  /* Otomatis mengecil/membesar dengan sangat mulus di segala device */
+  font-size: clamp(2rem, 5vw + 1rem, 5rem);
+  max-width: 900px;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--color-white);
+  margin-bottom: 24px;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  margin:0 auto;
+
+}
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+.sp-hero-description {
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 680px;
+  margin: 24px auto 48px auto;
+  font-weight: 400;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================
+   BUTTONS (Modern Micro-interactions)
+========================================= */
+.sp-hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.sp-hero .btn-premium {
+  padding: 16px 36px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 50px; /* Capsule style yang modern */
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.sp-hero .btn-primary {
+  background: var(--color-primary);
+  color: var(--color-text-light);
+}
+
+.sp-hero .btn-primary:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-3px);
+}
+
+/* =========================================
+   WAVE TRANSITION
+========================================= */
+.sp-hero-wave {
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  line-height: 0;
+  z-index: 10;
+}
+
+.sp-hero-wave svg {
+  display: block;
+  width: 100%;
+}
+
+/* =========================================
+   ANIMATION KEYFRAMES
+========================================= */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   RESPONSIVE OPTIMIZATION
+========================================= */
+@media (max-width: 768px) {
+  .sp-hero {
+    min-height: 90vh; /* Sedikit lebih proporsional di HP */
+  }
+  
+  .sp-hero-wave svg {
+    height: 40px; /* Lebih kecil di mobile agar tidak memakan space */
+  }
+}
+
+@media (max-width: 480px) {
+  .sp-hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 20px;
+  }
+  
+  .sp-hero .btn-premium {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+
+/* =========================================
+   BISHOP SECTION
+========================================= */
+
+.sp-bishop-section {
+  position: relative;
+  padding: 20px 0 60px;
+  background: var(--color-bg-light);
+  overflow: hidden;
+}
+
+/* =========================================
+   GRID
+========================================= */
+
+.sp-bishop-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 80px;
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.sp-bishop-content {
+  max-width: 600px;
+}
+
+.sp-section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  font-family: 'Manrope', sans-serif;
+  font-size: .9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  color: var(--color-secondary);
+
+  margin-bottom: 24px;
+}
+
+.sp-section-label::before {
+  content: "";
+
+  width: 50px;
+  height: 2px;
+
+  background: var(--color-secondary);
+}
+
+.sp-bishop-title {
+  font-size: clamp(3rem, 5vw, 5rem);
+  line-height: 0.95;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-primary);
+
+  margin-bottom: 32px;
+}
+
+.sp-bishop-text {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.5;
+
+  color: var(--color-text-secondary);
+
+  margin-bottom: 40px;
+}
+
+/* =========================================
+   VISUAL
+========================================= */
+
+.sp-bishop-visual {
+  position: relative;
+
+  min-height: 700px;
+
+  display: flex;
+  align-items: flex-end;
+}
+
+/* Shape Background */
+
+.sp-bishop-shape {
+  position: absolute;
+
+  width: 85%;
+  height: 78%;
+
+  bottom: 0;
+  right: 0;
+
+  border-radius: 3px;
+
+  background: var(--color-primary);
+
+  overflow: hidden;
+}
+
+
+/* Foto */
+
+.sp-bishop-image {
+  position: relative;
+  z-index: 5;
+  width: 90%;
+  max-width: 650px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 992px) {
+
+  .sp-bishop-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .sp-bishop-content {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .sp-section-label {
+    justify-content: center;
+  }
+
+  .sp-bishop-visual {
+    min-height: 550px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .sp-bishop-section {
+    padding: 90px 0;
+  }
+
+  .sp-bishop-title {
+    font-size: 3rem;
+  }
+
+  .sp-bishop-text {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .sp-bishop-visual {
+    min-height: 450px;
+  }
+
+}
+
+/* =========================================
+   QUOTE SECTION
+========================================= */
+
+.sp-quote-section {
+  padding: 100px 0;
+  background: var(--color-bg-light);
+}
+
+/* =========================================
+   QUOTE BOX
+========================================= */
+.container-quote {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.sp-quote-box {
+  position: relative;
+
+  min-height: 450px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-items:center;
+  text-align: center;
+  min-height:550px;
+
+  overflow: hidden;
+
+  padding: 80px 40px;
+
+  background-image:
+    linear-gradient(
+      rgba(17, 17, 17, 0.78),
+      rgba(24, 24, 24, 0.78)
+    ),
+    url("https://i.ibb.co.com/PvHt6vYb/Hero-Pic-sby-priest-2.avif");
+
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+
+/* =========================================
+   QUOTE ICON
+========================================= */
+.sp-quote-icon {
+  font-size: 3rem;
+  color: var(--color-secondary);
+}
+
+.sp-quote-icon svg{
+  width: 70px;
+  height: 70px;
+  fill: var(--color-secondary);
+}
+
+/* =========================================
+   BLOCKQUOTE
+========================================= */
+
+.sp-quote-box blockquote {
+  position: relative;
+  z-index: 3;
+
+  max-width: 800px;
+padding: 25px 0 0;
+  margin: 0;
+
+  color: var(--color-text-light);
+
+  font-size: clamp(2rem, 4vw, 4rem);
+
+  line-height: 1.15;
+
+  font-weight: 700;
+}
+
+/* =========================================
+   AUTHOR
+========================================= */
+
+.sp-quote-box span {
+  position: relative;
+  z-index: 3;
+
+  margin-top: 50px;
+
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: rgba(255,255,255,.9);
+
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* garis emas */
+
+.sp-quote-box span::before {
+  content: "";
+
+  width: 180px;
+  height: 2px;
+
+  background: var(--color-secondary);
+
+  margin-bottom: 20px;
+}
+
+/* =========================================
+   DECORATIVE GLOW
+========================================= */
+
+.sp-quote-box::after {
+  content: "";
+
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  border-radius: 50%;
+
+  top: 50%;
+  left: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  background:
+    radial-gradient(
+      rgba(255,255,255,.08),
+      transparent 70%
+    );
+
+  pointer-events: none;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 992px) {
+
+  .sp-quote-box {
+    min-height: 400px;
+  }
+
+  .sp-quote-box::before {
+    font-size: 6rem;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .sp-quote-section {
+    padding: 80px 0;
+  }
+
+  .sp-quote-box {
+    padding: 60px 30px;
+    min-height: 350px;
+  }
+
+  .sp-quote-box::before {
+    font-size: 5rem;
+    top: 50px;
+  }
+
+  .sp-quote-box span::before {
+    width: 120px;
+  }
+
+}
+
+@media (max-width: 576px) {
+
+  .sp-quote-box {
+    min-height: 320px;
+    padding: 50px 20px;
+  }
+
+  .sp-quote-box blockquote {
+    line-height: 1.2;
+  }
+
+}
+
+/* =========================================
+   DISCERNMENT SECTION
+========================================= */
+
+.sp-discernment-section{
+  padding:120px 0;
+  background:var(--color-bg-light);
+}
+
+/* =========================================
+   GRID
+========================================= */
+
+.sp-discernment-grid{
+  display:grid;
+  grid-template-columns:520px 1fr;
+  gap:90px;
+
+  align-items:center;
+}
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.sp-discernment-image{
+  position:relative;
+}
+
+.sp-discernment-image img{
+  width:100%;
+  height:600px;
+
+  object-fit:cover;
+  display:block;
+
+  border-radius:4px;
+
+  box-shadow:
+  0 25px 60px rgba(0,0,0,.12);
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.sp-discernment-content{
+  max-width:700px;
+}
+
+/* =========================================
+   TITLE
+========================================= */
+
+.sp-discernment-title{
+  font-family:var(--font-heading);
+
+  font-size:clamp(2rem,5vw,4rem);
+
+  line-height:1.05;
+
+  color:var(--color-primary);
+
+  margin-bottom:32px;
+
+  font-weight:700;
+}
+
+/* =========================================
+   TEXT
+========================================= */
+
+.sp-discernment-text{
+  font-size:1.1rem;
+
+  line-height:1.8;
+
+  color:var(--color-text-secondary);
+
+  max-width:600px;
+
+  margin-bottom:40px;
+}
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.sp-discernment-content .btn{
+  min-width:230px;
+
+  padding:16px 28px;
+
+  font-size:15px;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:992px){
+
+  .sp-discernment-grid{
+    grid-template-columns:1fr;
+    gap:50px;
+  }
+
+  .sp-discernment-image{
+    max-width:650px;
+    margin:auto;
+  }
+
+  .sp-discernment-content{
+    text-align:center;
+    max-width:100%;
+  }
+
+  .sp-discernment-text{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+}
+
+@media(max-width:768px){
+
+  .sp-discernment-section{
+    padding:80px 0;
+  }
+
+  .sp-discernment-image img{
+    height:450px;
+  }
+
+  .sp-discernment-title{
+    font-size:2.6rem;
+  }
+
+}
+
+@media(max-width:576px){
+
+  .sp-discernment-image img{
+    height:380px;
+  }
+
+  .sp-discernment-title{
+    font-size:2.2rem;
+  }
+
+  .sp-discernment-content .btn{
+    width:100%;
+  }
+
+}
+
+/* =========================================
+   TEST PANGGILAN SECTION
+========================================= */
+
+.sp-test-section{
+  position:relative;
+
+  min-height:520px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;
+
+  background-image:
+  url("https://i.ibb.co.com/67dh2KYz/Hero-Pic-sby-priest-4.avif");
+
+  background-size:cover;
+  background-position:center;
+
+  margin:120px 0;
+}
+
+.sp-test-section .container{
+  width:100%;
+  max-width:1400px;
+}
+
+/* =========================================
+   OVERLAY
+========================================= */
+
+.sp-test-overlay{
+  position:absolute;
+  inset:0;
+
+  background:
+  rgba(0,0,0,.55);
+
+  z-index:1;
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.sp-test-content{
+  position:relative;
+  z-index:3;
+
+  max-width:900px;
+
+  text-align:center;
+
+  margin:auto;
+}
+
+/* =========================================
+   TITLE
+========================================= */
+
+.sp-test-content h2{
+  color:var(--color-text-light);
+
+  font-size:
+  clamp(2.8rem,5vw,5rem);
+font-family:var(--font-heading);
+  line-height:1.1;
+
+  margin-bottom:24px;
+
+  text-shadow:
+  0 8px 20px rgba(0,0,0,.25);
+}
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.sp-test-content p{
+   margin:0 auto 40px;
+
+  color: var(--color-text-light);
+
+  font-size:1.1rem;
+
+  line-height:1.6;
+}
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.sp-test-content .btn{
+  min-width:220px;
+
+  padding:16px 32px;
+}
+
+/* =========================================
+   PREMIUM HOVER
+========================================= */
+
+.sp-test-content .btn-primary{
+  background:
+  var(--color-primary);
+
+  color:#fff;
+}
+
+.sp-test-content .btn-primary:hover{
+  transform:
+  translateY(-3px);
+
+  box-shadow:
+  0 15px 30px rgba(0,107,60,.35);
+}
+
+/* =========================================
+   DECORATIVE OVERLAY
+========================================= */
+
+.sp-test-section::before{
+  content:"";
+
+  position:absolute;
+
+  width:600px;
+  height:600px;
+
+  border-radius:50%;
+
+  top:50%;
+  left:50%;
+
+  transform:
+  translate(-50%,-50%);
+
+  background:
+  radial-gradient(
+    rgba(255,255,255,.08),
+    transparent 70%
+  );
+
+  z-index:2;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:768px){
+
+  .sp-test-section{
+    min-height:450px;
+  }
+
+  .sp-test-content p{
+    font-size:1rem;
+  }
+
+}
+
+@media(max-width:576px){
+
+  .sp-test-section{
+    min-height:400px;
+  }
+
+  .sp-test-content h2{
+    font-size:2.2rem;
+  }
+
+  .sp-test-content .btn{
+    width:100%;
+    max-width:260px;
+  }
+
+}
+
+/* =========================
+   FORMATION SECTION
+========================= */ 
+.sp-formation-section {
+  padding: 80px 0;
+  background: var(--color-bg-light);
+  position: relative;
+  overflow: hidden;
+}
+
+/* =========================================
+   HEADING
+========================================= */
+
+.sp-formation-heading {
+  font-family: var(--font-heading);
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.sp-formation-heading .sp-section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+
+  text-transform: uppercase;
+  letter-spacing: 3px;
+
+  color: var(--color-secondary);
+}
+
+.sp-formation-heading .sp-section-label::before,
+.sp-formation-heading .sp-section-label::after {
+  content: "";
+
+  width: 50px;
+  height: 2px;
+
+  background: var(--color-secondary);
+}
+
+.sp-formation-heading h2 {
+  margin-top: 20px;
+font-weight: 700;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.1;
+
+  color: var(--color-primary);
+}
+
+/* =========================================
+   GRID
+========================================= */
+
+.sp-formation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+}
+
+/* =========================================
+   CARD
+========================================= */
+
+.sp-formation-card {
+  position: relative;
+
+  background: #ffffff;
+
+  border-radius: 4px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(0, 0, 0, .05);
+
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, .05);
+
+  transition:
+    transform .4s ease,
+    box-shadow .4s ease;
+}
+
+/* Top Accent */
+
+.sp-formation-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 4px;
+
+  background: var(--color-secondary);
+
+  z-index: 10;
+}
+
+/* Hover */
+
+.sp-formation-card:hover {
+  transform: translateY(-12px);
+
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, .12);
+}
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.sp-formation-image {
+  height: 240px;
+  overflow: hidden;
+}
+
+.sp-formation-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  display: block;
+
+  transition:
+    transform .8s ease;
+}
+
+.sp-formation-card:hover .sp-formation-image img {
+  transform: scale(1.08);
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.sp-formation-body {
+  padding: 30px;
+  text-align: center;
+}
+
+.sp-formation-body h3 {
+  color: var(--color-primary);
+font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 1.3;
+
+  margin-bottom: 18px;
+
+  position: relative;
+}
+
+/* Gold Divider */
+
+.sp-formation-body h3::after {
+  content: "";
+
+  display: block;
+
+  width: 60px;
+  height: 2px;
+
+  margin: 14px auto 0;
+
+  background: var(--color-secondary);
+}
+
+.sp-formation-body p {
+  font-family: 'Manrope', sans-serif;
+
+  font-size: .95rem;
+  line-height: 1.5;
+
+  color: var(--color-text-secondary);
+
+  margin-bottom: 24px;
+}
+
+/* =========================================
+   LINK BUTTON
+========================================= */
+
+.sp-formation-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: .95rem;
+
+  text-decoration: none;
+
+  color: var(--color-primary);
+
+  transition: all .3s ease;
+}
+
+.sp-formation-link:hover {
+  color: var(--color-secondary);
+
+  transform: translateX(5px);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 992px) {
+
+  .sp-formation-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .sp-formation-section {
+    padding: 90px 0;
+  }
+
+  .sp-formation-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .sp-formation-heading {
+    margin-bottom: 50px;
+  }
+
+  .sp-formation-image {
+    height: 220px;
+  }
+
+}
+
+@media (max-width: 576px) {
+
+  .sp-formation-heading h2 {
+    font-size: 2.3rem;
+  }
+
+  .sp-formation-body {
+    padding: 25px;
+  }
+
+  .sp-formation-image {
+    height: 200px;
+  }
+
+}
+
+/* =========================
+   CTA SECTION
+========================= */ 
+
+.sp-contact-cta {
+  padding: 80px 0;
+  background: var(--color-bg-light);
+}
+
+/* =========================================
+   CTA BOX
+========================================= */
+
+.sp-contact-cta-box {
+  position: relative;
+
+  background: var(--color-primary);
+
+  border-radius: 4px;
+
+  padding:
+    80px
+    40px;
+
+  text-align: center;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+.sp-contact-label {
+  display: inline-block;
+
+  position: relative;
+  z-index: 2;
+
+  font-family: 'Manrope', sans-serif;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  letter-spacing: 3px;
+
+  color: rgba(255,255,255,.75);
+
+  margin-bottom: 24px;
+}
+
+/* =========================================
+   TITLE
+========================================= */
+
+.sp-contact-cta-box h2 {
+  position: relative;
+  z-index: 2;
+font-family: var(--font-heading);
+font-weight: 700;
+color: var(--color-text-light);
+  font-size:
+    clamp(2rem, 5vw, 4rem);
+
+  line-height: 1.1;
+
+  margin-bottom: 24px;
+}
+
+/* =========================================
+   TEXT
+========================================= */
+
+.sp-contact-cta-box p {
+  position: relative;
+  z-index: 2;
+
+  max-width: 700px;
+
+  margin:
+    0 auto
+    45px;
+
+  color:
+    rgba(255,255,255,.9);
+
+
+  font-size: 1.1rem;
+
+  line-height: 1.5;
+}
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.sp-contact-btn {
+  position: relative;
+  z-index: 2;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 240px;
+
+  height: 60px;
+
+  border: 2px solid rgba(255,255,255,.9);
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+
+  transition: all .35s ease;
+}
+
+/* Hover */
+
+.sp-contact-btn:hover {
+  background: #ffffff;
+
+  color: var(--color-primary);
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.15);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width:768px){
+
+  .sp-contact-cta{
+    padding:80px 0;
+  }
+
+  .sp-contact-cta-box{
+    padding:80px 25px;
+  }
+
+  .sp-contact-cta-box p{
+    font-size:1rem;
+  }
+
+  .sp-contact-btn{
+    width:100%;
+    max-width:280px;
+  }
+
+}
