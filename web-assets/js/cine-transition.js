@@ -1,17 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. INTRO: Hilangkan loader & munculkan konten secara halus
-  setTimeout(() => {
-    document.body.classList.add("is-loaded");
-  }, 200); // Jeda tipis 200ms agar mata sempat menangkap transisi smooth-nya
+  const loader = document.getElementById("cinematic-loader");
+  const mainContent = document.getElementById("main-content");
 
-  // 2. OUTRO: Intersepsi semua klik pada link untuk efek keluar
+  // INTRO: Munculkan konten secara bertahap setelah DOM siap
+  // Kita beri jeda mikro agar browser selesai melakukan "paint" dasar di balik layar
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      document.body.classList.add("is-loaded");
+    }, 100); 
+  });
+
+  // OUTRO: Intersepsi klik link
   const links = document.querySelectorAll("a");
-  
   links.forEach(link => {
     link.addEventListener("click", (e) => {
       const targetUrl = link.getAttribute("href");
 
-      // Validasi: Pastikan link internal, bukan tab baru (_blank), dan bukan anchor (#)
       if (
         link.hostname === window.location.hostname && 
         !link.getAttribute("target") && 
@@ -19,22 +23,22 @@ document.addEventListener("DOMContentLoaded", () => {
         !targetUrl.startsWith("#") &&
         targetUrl !== "#"
       ) {
-        e.preventDefault(); // Tahan browser agar tidak langsung pindah
+        e.preventDefault(); 
 
-        // Picu animasi outro (blur & fade out)
+        // Jalankan animasi keluar (Konten nge-blur & Loader solid menutup kembali)
         document.body.classList.remove("is-loaded");
         document.body.classList.add("is-exiting");
 
-        // Tunggu hingga animasi CSS selesai (600ms - 800ms), lalu pindah halaman
+        // Tunggu hingga transisi selesai (600ms match dengan CSS), lalu pindah halaman
         setTimeout(() => {
           window.location.href = targetUrl;
-        }, 700);
+        }, 600);
       }
     });
   });
 });
 
-// Penyelamat jika user klik tombol "Back" di browser agar halaman tidak nge-stuck blur
+// Solusi tombol Back/Forward browser
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
     document.body.classList.remove("is-exiting");

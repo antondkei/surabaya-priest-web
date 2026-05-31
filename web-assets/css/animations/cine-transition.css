@@ -1,52 +1,66 @@
 /* =========================================
-   CINEMATIC PAGE TRANSITION & PRELOADER
+   PERBAIKAN TRANSISI ANTI-KILATAN (ANTI-FLICKER)
 ========================================= */
 
-/* 1. Konten Utama (Default: Tersembunyi & Blur) */
+/* KUNCI 1: Paksa background dasar html & body memiliki warna yang sama dengan tema web Anda. 
+   Ini mencegah browser menampilkan layar putih bawaannya saat berpindah halaman */
+html, body {
+  background-color: #ffffff; /* Ganti dengan #1a1a1a jika website Anda Dark Mode */
+  margin: 0;
+  padding: 0;
+}
+
 #main-content {
   opacity: 0;
   filter: blur(20px);
-  transform: scale(0.96); /* Efek sedikit mengecil saat transisi */
+  transform: scale(0.96);
+  /* Mempercepat durasi sedikit agar transisi terasa responsif namun tetap smooth */
   transition: 
-    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 1s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 2. Saat Halaman Selesai Dimuat (Intro) */
 body.is-loaded #main-content {
   opacity: 1;
   filter: blur(0px);
   transform: scale(1);
 }
 
-/* 3. Saat User Klik Link Pindah Halaman (Outro) */
 body.is-exiting #main-content {
   opacity: 0;
   filter: blur(20px);
-  transform: scale(1.04); /* Efek cinematic zoom out sedikit */
+  transform: scale(1.04);
 }
 
-/* 4. Overlay Loader */
+/* KUNCI 2: Loader di awal HARUS SOLID, jangan gunakan rgba() transparan di awal, 
+   karena rgba() akan membocorkan warna kanvas putih asli browser di belakangnya */
 #cinematic-loader {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(255, 255, 255, 0.4); /* Gunakan rgba(0,0,0,0.4) untuk dark mode */
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+  background: #ffffff; /* WAJIB SOLID! Samakan dengan warna background web Anda */
   z-index: 99999;
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 1;
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  pointer-events: none; /* Supaya tidak memblokir klik setelah hilang */
+  /* Gunakan transition visibility juga agar tidak memblokir pointer-events */
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
+  visibility: visible;
 }
 
-/* Hilangkan loader saat loaded */
+/* Saat selesai dimuat, loader memudar keluar secara elegan */
 body.is-loaded #cinematic-loader {
   opacity: 0;
+  visibility: hidden;
+}
+
+/* Saat user klik link keluar halaman, loader solid muncul kembali dengan halus */
+body.is-exiting #cinematic-loader {
+  opacity: 1;
+  visibility: visible;
+  background: #ffffff; /* Muncul kembali sebagai tameng solid */
 }
 
 /* Animasi Spinner Ringan (Opsional) */
