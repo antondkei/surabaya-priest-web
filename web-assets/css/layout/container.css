@@ -49,7 +49,9 @@ html {
   overflow-y: overlay; 
   /* Untuk Firefox */
   scrollbar-width: thin; 
-  scrollbar-color: rgba(25, 26, 83, 0.6) transparent; 
+  scrollbar-color: rgba(185, 185, 185, 0.6) transparent;
+  background: transparent; /* Pastikan latar belakang transparan agar tidak memotong width layar */  
+
 }
 
 /* Styling khusus Chrome, Edge, Safari */

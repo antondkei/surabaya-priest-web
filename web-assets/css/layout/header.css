@@ -78,17 +78,6 @@
   transition: color 0.3s ease;
 }
 
-/* Bukan Halaman Utama (Is Not Home) */
-#sby-priest .sby-priest-header.is-not-home {
-  background: rgba(25, 26, 83, 1) !important;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  padding: 16px 0;
-}
-
-#sby-priest .sby-priest-header.is-not-home .nav-item > a {
-  color: #ffffff !important;
-}
-
 /* Animasi Ikon Panah */
 #sby-priest .dropdown-icon {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -128,7 +117,7 @@
   transform: translateX(-50%) translateY(15px);
   background: #ffffff;
   min-width: 220px;
-  border-radius: 14px;
+  border-radius: 2px;
   padding: 10px 0;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
   border: 1px solid rgba(0, 0, 0, 0.04);
@@ -161,4 +150,170 @@
   background: rgba(25, 26, 83, 0.04);
   color: var(--color-secondary, #cda76e); /* Emas saat hover sub-menu */
   padding-left: 28px; /* Efek geser kanan estetik */
+}
+
+/* =========================================
+   RESPONSIVE MOBILE MENU (MAX-WIDTH: 991px)
+========================================= */
+
+/* Sembunyikan tombol hamburger di layar Desktop */
+#sby-priest .mobile-menu-toggle {
+  display: none;
+}
+
+@media screen and (max-width: 991px) {
+#sby-priest .container{
+  padding:0 16px;
+}
+  
+  /* --- PENYESUAIAN LOGO --- */
+  #sby-priest .logo-img {
+    width: 150px; /* Ukuran logo lebih kecil di HP */
+  }
+  #sby-priest .sby-priest-header.is-sticky .logo-img {
+    width: 130px;
+  }
+
+/* --- TOMBOL HAMBURGER (SOLUSI ABSOLUTE - BEBAS BUG) --- */
+#sby-priest .mobile-menu-toggle {
+  display: block; /* Diubah ke block untuk mematikan keanehan flexbox pada button */
+  width: 24px;
+  height: 16px;   /* Menentukan tinggi total area tombol */
+  position: relative;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  padding: 0;     /* Menghilangkan padding bawaan tag button */
+}
+
+#sby-priest .mobile-menu-toggle .bar {
+  position: absolute;
+  left: 0;
+  width: 24px;
+  height: 2px;    /* Diubah ke 2px agar terlihat lebih modern, clean, dan presisi */
+  background-color: var(--color-secondary, #e0c49f); /* Ditambahkan fallback warna emas */
+  border-radius: 0; /* Sesuai request: tegas tanpa rounded */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mengatur posisi statis awal setiap garis */
+#sby-priest .mobile-menu-toggle .bar:nth-child(1) {
+  top: 0;
+}
+#sby-priest .mobile-menu-toggle .bar:nth-child(2) {
+  top: 7px; /* Berada tepat di tengah-tengah */
+}
+#sby-priest .mobile-menu-toggle .bar:nth-child(3) {
+  top: 14px;
+}
+
+/* --- ANIMASI SAKLAR BERUBAH MENJADI SILANG (X) --- */
+/* Garis 1: Turun ke tengah, lalu berputar 45 derajat */
+#sby-priest .mobile-menu-toggle.is-active .bar:nth-child(1) {
+  top: 7px;
+  transform: rotate(45deg);
+}
+
+/* Garis 2: Menghilang total dengan efek menyusut halus */
+#sby-priest .mobile-menu-toggle.is-active .bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+/* Garis 3: Naik ke tengah, lalu berputar -45 derajat */
+#sby-priest .mobile-menu-toggle.is-active .bar:nth-child(3) {
+  top: 7px;
+  transform: rotate(-45deg);
+}
+
+  /* --- PANEL MENU MUNCUL DARI KANAN --- */
+#sby-priest .header-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  transform: translateX(100%);
+
+  width: 80%;
+  max-width: 320px;
+  height: 100vh;
+
+  box-sizing: border-box;
+
+  background-color: var(--color-primary);
+
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  padding: 100px 30px 30px;
+
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  overflow-y: auto;
+
+  z-index: 999;
+}
+
+  /* Class pemicu menu muncul */
+  #sby-priest .header-nav.is-active {
+  transform: translateX(0);
+  }
+
+  /* --- GAYA ITEM MENU DI DALAM PANEL --- */
+  #sby-priest .nav-item {
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(224, 196, 159, 0.1); /* Garis batas samar */
+  }
+  
+  #sby-priest .nav-item > a {
+    font-size: 14px;
+    justify-content: space-between; /* Pisahkan teks dan ikon panah ke ujung */
+    width: 100%;
+  }
+
+  /* Hilangkan efek garis bawah hover di versi mobile */
+  #sby-priest .nav-item > a::after {
+    display: none; 
+  }
+
+  /* --- PENYESUAIAN DROPDOWN UNTUK MOBILE --- */
+  /* Di mobile, dropdown tidak melayang (absolute), tapi menumpuk ke bawah (accordion) */
+  #sby-priest .dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin-top: 0;
+    max-height: 0; /* Default tertutup */
+    overflow: hidden; /* Sembunyikan isinya */
+    transition: max-height 0.4s ease;
+  }
+
+  /* Mematikan hover bawaan desktop */
+  #sby-priest .nav-item.has-dropdown:hover .dropdown-menu {
+    transform: none;
+  }
+
+  /* Tampilan list di dalam dropdown mobile */
+  #sby-priest .dropdown-menu a {
+    color: #ffffff;
+    padding: 12px 15px 12px 20px;
+    font-size: 14px;
+    border-left: 2px solid var(--color-secondary);
+    margin-top: 10px;
+    opacity: 0.8;
+  }
+  
+  #sby-priest .dropdown-menu a:hover {
+    background: rgba(224, 196, 159, 0.15);
+    opacity: 1;
+	color:#ffffff !important;
+  }
 }
