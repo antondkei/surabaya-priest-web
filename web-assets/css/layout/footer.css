@@ -113,9 +113,9 @@
   width: fit-content;
   padding: 16px 36px;
   
-  background: var(--color-secondary);
-  color: var(--color-primary);
-  border: 1px solid var(--color-secondary);
+  background: transparent;
+  color: var(--color-white);
+  border: 1px solid var(--color-white);
   border-radius: 2px; /* MENGHILANGKAN ROUNDED */
   
   text-decoration: none;
@@ -135,8 +135,8 @@
 
 /* Hover Effect: Transparent background & arrow move */
 .sp-footer-donate-btn:hover {
-  background: transparent;
-  color: var(--color-secondary);
+  background: var(--color-primary);
+  color: var(--color-white);
 }
 
 .sp-footer-donate-btn:hover svg {
