@@ -32,6 +32,11 @@ html, body {
   overflow-x: hidden; /* <--- Tambahan Wajib */
 }
 
+a{
+  display: inline-block;
+   text-decoration: none;
+} 
+
 body {
   margin: 0;
   font-family: 'Manrope', sans-serif;
