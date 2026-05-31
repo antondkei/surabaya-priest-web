@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Data 20 Pertanyaan Bersih dari Karakter Asing
   const questions = [
     "Saya mengasihi Yesus dan saya haus untuk menyebarkan ajaran-Nya kepada semakin banyak orang.",
     "Saya berusaha menjadi seorang Katolik yang beriman dan taat beribadah.",
@@ -27,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let userScores = new Array(questions.length).fill(null);
 
   // Elemen DOM
+  const interactiveZone = document.getElementById("quiz-interactive-zone");
   const questionText = document.getElementById("question-text");
   const progressText = document.getElementById("progress-text");
   const progressPercent = document.getElementById("progress-percent");
@@ -41,9 +41,20 @@ document.addEventListener("DOMContentLoaded", function () {
   const interpretationText = document.getElementById("interpretation-text");
   const btnRestart = document.getElementById("btn-restart");
 
-  // Fungsi Render Pertanyaan
-  function renderQuestion() {
-    // Tampilkan teks pertanyaan dengan nomor indeks bersih
+  // Fungsi Transisi Elegan (Fade out -> Swap Data -> Fade in)
+  function executeSmoothTransition(updateStateCallback) {
+    interactiveZone.classList.add("sp-blur-out");
+
+    // Tunggu animasi blur keluar selesai (400ms)
+    setTimeout(() => {
+      updateStateCallback();
+      // Kembalikan ke kondisi normal (Fading In)
+      interactiveZone.classList.remove("sp-blur-out");
+    }, 400);
+  }
+
+  // Fungsi Render Pertanyaan (Inti Data)
+  function renderQuestionData() {
     questionText.innerHTML = `${currentTrack + 1}. ${questions[currentTrack]}`;
 
     // Update Progress Bar
@@ -53,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
     progressPercent.innerText = `${percent}%`;
     progressFill.style.width = `${percent}%`;
 
-    // Atur status aktif tombol angka skala 0-5
+    // Atur status aktif tombol angka skala
     scaleBtns.forEach(btn => {
       btn.classList.remove("active");
       if (userScores[currentTrack] !== null && btn.getAttribute("data-value") == userScores[currentTrack]) {
@@ -61,17 +72,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Kontrol Aktif/Matinya Tombol Navigasi
+    // Kontrol Tombol Navigasi
     btnPrev.disabled = (currentTrack === 0);
-    
-    // Tombol Next mati jika belum diisi angka, menyala jika sudah ada nilai
-    if (userScores[currentTrack] === null) {
-      btnNext.disabled = true;
-    } else {
-      btnNext.disabled = false;
-    }
+    btnNext.disabled = (userScores[currentTrack] === null);
 
-    // Mengubah tulisan tombol secara dinamis pada soal terakhir
     if (currentTrack === questions.length - 1) {
       btnNext.innerText = "Lihat Hasil Tes";
     } else {
@@ -79,46 +83,51 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Handler Klik Angka Skor (0-5) - Tanpa Otomatis Geser Soal
+  // Handler Klik Angka Skor (0-5)
   scaleBtns.forEach(btn => {
     btn.addEventListener("click", function () {
       const selectedValue = parseInt(this.getAttribute("data-value"));
       userScores[currentTrack] = selectedValue;
 
-      // Nyalakan warna background tombol angka yang dipilih
       scaleBtns.forEach(b => b.classList.remove("active"));
       this.classList.add("active");
-
-      // Hanya mengaktifkan tombol berikutnya, user harus menekan tombol Next sendiri
       btnNext.disabled = false;
     });
   });
 
-  // Handler Tombol Navigasi Lanjut
+  // Handler Tombol Navigasi Lanjut (Menggunakan Efek Transisi)
   btnNext.addEventListener("click", function () {
     if (currentTrack < questions.length - 1) {
-      currentTrack++;
-      renderQuestion();
+      executeSmoothTransition(() => {
+        currentTrack++;
+        renderQuestionData();
+      });
     } else {
-      calculateAndShowResults();
+      // Untuk transisi ke halaman hasil akhir
+      screenQuestions.style.opacity = "0";
+      setTimeout(() => {
+        screenQuestions.style.display = "none";
+        calculateAndShowResults();
+      }, 400);
     }
   });
 
-  // Handler Tombol Navigasi Mundur
+  // Handler Tombol Navigasi Mundur (Menggunakan Efek Transisi)
   btnPrev.addEventListener("click", function () {
     if (currentTrack > 0) {
-      currentTrack--;
-      renderQuestion();
+      executeSmoothTransition(() => {
+        currentTrack--;
+        renderQuestionData();
+      });
     }
   });
 
-  // Kalkulasi Skor Akhir Bersih Berdasarkan Brosur Resmi
+  // Kalkulasi Skor Akhir
   function calculateAndShowResults() {
     const totalScore = userScores.reduce((sum, val) => sum + val, 0);
     finalScoreDisplay.innerText = totalScore;
 
     let analysis = "";
-
     if (totalScore > 70) {
       analysis = `<strong>Skor di atas 70 (${totalScore})</strong> berarti Anda diajak sungguh mempertimbangkan panggilan Imamat lebih jauh. Namun, perlu diingat bahwa skor yang tinggi belum cukup menjadi bukti langsung bahwa Anda dipanggil untuk menjadi seorang imam. Panggilan membutuhkan proses diskresi (pembedaan roh) yang mendalam bersama Gereja.`;
     } else if (totalScore >= 50 && totalScore <= 70) {
@@ -128,9 +137,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     interpretationText.innerHTML = analysis;
-
-    // Sembunyikan form soal, tampilkan area hasil
-    screenQuestions.style.display = "none";
     screenResults.style.display = "block";
     document.getElementById("quiz-container").scrollIntoView({ behavior: 'smooth' });
   }
@@ -141,9 +147,10 @@ document.addEventListener("DOMContentLoaded", function () {
     userScores = new Array(questions.length).fill(null);
     screenResults.style.display = "none";
     screenQuestions.style.display = "block";
-    renderQuestion();
+    screenQuestions.style.opacity = "1";
+    renderQuestionData();
   });
 
-  // Inisialisasi awal kuis saat halaman dimuat
-  renderQuestion();
+  // Ambil inisialisasi awal kuis tanpa animasi agar instan saat load pertama
+  renderQuestionData();
 });

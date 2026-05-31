@@ -16,9 +16,11 @@
     <link rel="stylesheet" href="../web-assets/css/components/button.css">
     <link rel="stylesheet" href="../web-assets/css/core/style.css">
     <link rel="stylesheet"  href="../web-assets/css/animations/reveal.css">
+    <link rel="stylesheet"  href="../web-assets/css/animations/cine-transition.css">
 
 </head>
 <body>
+<div id="cinematic-loader"></div>
 <div id='sby-priest'>
 <header class='sby-priest-header' id='sby-priest-header'>
     <div class='sby-priest container'>
@@ -111,7 +113,7 @@
               <span id="progress-fill" style="width: 5%"></span>
             </div>
           </div>
-
+        <div id="quiz-interactive-zone" class="sp-transition-zone"></div>
           <h3 class="sp-question-title" id="question-text">
             Loading pertanyaan...
           </h3>
@@ -129,7 +131,7 @@
             <span>0 = Sama sekali tidak menggambarkan Anda</span>
             <span>5 = Menggambarkan Anda dengan sangat baik</span>
           </div>
-
+        </div>  
           <div class="sp-question-nav">
             <button class="sp-btn-outline" id="btn-prev" disabled>Sebelumnya</button>
             <button class="sp-btn-primary" id="btn-next" disabled>Pertanyaan Berikutnya</button>
@@ -201,5 +203,7 @@
 </div>  
     <script src="../web-assets/js/main.js"></script>
     <script src="../web-assets/js/quiz-page.js"></script>
+    <script src="../web-assets/js/cine-transition.js"></script>
+</div>
 </body>
 </html>

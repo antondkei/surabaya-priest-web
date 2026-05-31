@@ -204,7 +204,7 @@
 
 #sby-priest-quiz .sp-score-display span {
   font-size: 3rem;
-  font-weight: 300;
+  font-weight: 600;
   color: var(--color-primary);
   line-height: 1;
 }
@@ -251,5 +251,42 @@
   #sby-priest-quiz .sp-btn-outline,
   #sby-priest-quiz .sp-btn-primary {
     width: 100%;
+  }
+}
+
+/* Container Utama untuk Transisi Interaktif */
+.sp-transition-zone {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(0);
+  transition: 
+    opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    filter 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: opacity, filter, transform;
+}
+
+/* State Saat Transisi Keluar (Blur + Fade Out) */
+.sp-transition-zone.sp-blur-out {
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateY(-4px); /* Efek melayang halus ke atas */
+}
+
+/* Transisi Khusus untuk Layar Hasil Akhir */
+#quiz-screen-results {
+  animation: spSlowEntrance 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes spSlowEntrance {
+  0% {
+    opacity: 0;
+    filter: blur(15px);
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
   }
 }

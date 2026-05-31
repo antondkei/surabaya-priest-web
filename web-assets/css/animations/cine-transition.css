@@ -1,0 +1,62 @@
+/* =========================================
+   CINEMATIC PAGE TRANSITION & PRELOADER
+========================================= */
+
+/* 1. Konten Utama (Default: Tersembunyi & Blur) */
+#main-content {
+  opacity: 0;
+  filter: blur(20px);
+  transform: scale(0.96); /* Efek sedikit mengecil saat transisi */
+  transition: 
+    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 2. Saat Halaman Selesai Dimuat (Intro) */
+body.is-loaded #main-content {
+  opacity: 1;
+  filter: blur(0px);
+  transform: scale(1);
+}
+
+/* 3. Saat User Klik Link Pindah Halaman (Outro) */
+body.is-exiting #main-content {
+  opacity: 0;
+  filter: blur(20px);
+  transform: scale(1.04); /* Efek cinematic zoom out sedikit */
+}
+
+/* 4. Overlay Loader */
+#cinematic-loader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(255, 255, 255, 0.4); /* Gunakan rgba(0,0,0,0.4) untuk dark mode */
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none; /* Supaya tidak memblokir klik setelah hilang */
+}
+
+/* Hilangkan loader saat loaded */
+body.is-loaded #cinematic-loader {
+  opacity: 0;
+}
+
+/* Animasi Spinner Ringan (Opsional) */
+.spinner-modern {
+  width: 40px; height: 40px;
+  border: 3px solid rgba(0,0,0,0.1);
+  border-top-color: #000; /* Ganti warna sesuai brand Anda */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
