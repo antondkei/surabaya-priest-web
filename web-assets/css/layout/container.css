@@ -32,10 +32,6 @@ html, body {
   overflow-x: hidden; /* <--- Tambahan Wajib */
 }
 
-a{
-  display: inline-block;
-   text-decoration: none;
-} 
 
 body {
   margin: 0;
@@ -83,4 +79,9 @@ html {
   margin: 0 auto;
   padding: 0 6%; /* Menggunakan persentase agar dinamis di berbagai layar */
   width: 100%;
+}
+
+#sby-priest a {
+  text-decoration: none;
+  color: inherit;
 }
